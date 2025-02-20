@@ -4,12 +4,11 @@ import axios from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-import { Form, FormField, FormControl, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormField, FormControl, FormItem, FormMessage } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import toast from 'react-hot-toast';
 import { Course } from '@/lib/models';
-import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { Pencil } from 'lucide-react';
 import { formatPrice } from '@/lib/format';
@@ -26,8 +25,7 @@ const formSchema = z.object({
 })
 
 const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
-    const router = useRouter()
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
 
     const [ isEditing, setIsEditing ] = useState(false);
 

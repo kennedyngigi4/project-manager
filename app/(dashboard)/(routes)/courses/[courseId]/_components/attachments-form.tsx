@@ -2,17 +2,11 @@
 
 import React, { useState } from 'react';
 import axios from "axios";
-import { zodResolver } from '@hookform/resolvers/zod';
-import z from "zod";
 import { useForm } from 'react-hook-form';
-import { Form, FormItem, FormControl, FormMessage, FormDescription, FormField } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
-import { Pencil, PlusCircle } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Input } from '@/components/ui/input';
 import toast from 'react-hot-toast';
-import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import AttachmentList from './attachments-list';
 
@@ -27,24 +21,24 @@ interface AttachmentsFormProps {
 const AttachmentsForm = ({
     initialData, courseId
 }: AttachmentsFormProps) => {
-    const router = useRouter();
-    const { data: session, status } = useSession();
+    
+    const { data: session } = useSession();
     const [isEditing, setEditing] = useState(false);
     const [ file, setFile ] = useState(null);
 
     const toggleEdit = () => setEditing((current) => !current);
 
-    const { register, handleSubmit, formState } = useForm();
+    const { handleSubmit, formState } = useForm();
 
     const { isSubmitting, isValid } = formState;
 
 
-    const handleFileChange = (e: any) => {
+    const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         setFile(selectedFile);
     }
 
-    const onSubmit = async (e) => {
+    const onSubmit = async () => {
         try {
 
             const formData = new FormData();
@@ -66,6 +60,7 @@ const AttachmentsForm = ({
                 location.reload()
             }
         } catch (error) {
+            console.log(error)
             toast.error("Something went wrong");
         }
     }
@@ -76,7 +71,7 @@ const AttachmentsForm = ({
             headers: {
                 'Authorization': `Token ${session?.accessToken}`
             }
-        }).then((response) => {
+        }).then(() => {
             toast.success("Deleted successfully");
             location.reload();
         }).catch(() => {

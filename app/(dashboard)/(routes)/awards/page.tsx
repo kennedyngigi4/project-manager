@@ -6,7 +6,7 @@ import axios from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { Form, FormField, FormControl, FormItem, FormMessage, FormLabel } from '@/components/ui/form'
+import { Form, FormField, FormControl, FormItem, FormLabel } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import toast from 'react-hot-toast'
@@ -20,8 +20,6 @@ const formSchema = z.object({
 })
 
 const AwardsPage = () => {
-
-  const router = useRouter();
   const { data:session } = useSession();
   const [ image, setImage ] = useState(null);
   const [ badges, setBadges ] = useState([]);
@@ -37,7 +35,7 @@ const AwardsPage = () => {
     }).catch(() => {
       toast.error("Something went wrong", { style: { background: "#ff0000", color: "#ffffff" }});
     })
-  }, []);
+  }, [session?.accessToken]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,7 +44,6 @@ const AwardsPage = () => {
     }
   })
 
-  const { isValid, isSubmitting } = form.formState;
 
   const handleonChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -64,7 +61,7 @@ const AwardsPage = () => {
         headers: {
           'Authorization': `Token ${session?.accessToken}`
         }
-      }).then((response) => {
+      }).then(() => {
         toast.success("Badge created")
         location.reload()
       }).catch(() => {

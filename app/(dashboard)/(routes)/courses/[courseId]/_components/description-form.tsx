@@ -4,7 +4,7 @@ import axios from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
-import { Form, FormField, FormControl, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormField, FormControl, FormItem, FormMessage } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import toast from 'react-hot-toast';
@@ -25,8 +25,7 @@ const formSchema = z.object({
 })
 
 const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
-    const router = useRouter()
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
 
     const [ isEditing, setIsEditing ] = useState(false);
 

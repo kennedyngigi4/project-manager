@@ -10,7 +10,7 @@ import Footer from './_components/footer';
 const DashboardLayout = ({
     children
 } : Readonly<{ children: React.ReactNode }>) => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {

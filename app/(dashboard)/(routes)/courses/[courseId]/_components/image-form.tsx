@@ -2,15 +2,10 @@
 
 import React, { useState } from 'react';
 import axios from "axios";
-import { zodResolver } from '@hookform/resolvers/zod';
-import z from "zod";
 import { useForm } from 'react-hook-form';
-import { Form, FormItem, FormControl, FormMessage, FormDescription, FormField } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { Pencil } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Input } from '@/components/ui/input';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
@@ -28,8 +23,7 @@ interface ImageFormProps {
 const ImageForm = ({
     initialData, courseId
 }: ImageFormProps) => {
-    const router = useRouter();
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
     const [isEditing, setEditing] = useState(false);
 
     const toggleEdit = () => setEditing((current) => !current);
@@ -40,8 +34,6 @@ const ImageForm = ({
 
 
     const onSubmit = async (data: any) => {
-
-
 
         try {
 
@@ -63,6 +55,7 @@ const ImageForm = ({
                 location.reload()
             }
         } catch (error) {
+            console.log(error)
             toast.error("Something went wrong");
         }
     }

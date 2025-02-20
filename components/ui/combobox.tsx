@@ -60,7 +60,7 @@ export const Combobox = ({
                                     key={option.value}
                                     value={option.value}
                                     onSelect={(currentValue) => {
-                                        onChange(option.value === value ? "" : option.value)
+                                        onChange(currentValue === value ? "" : currentValue)
                                         setOpen(false)
                                     }}
                                 >

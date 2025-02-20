@@ -6,11 +6,10 @@ import { DropdownMenu } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, Info, MoreHorizontal, Pencil } from "lucide-react"
-import Link from "next/link"
+import { ArrowUpDown, Info, MoreHorizontal } from "lucide-react"
 
 export type User = {
-    uid: string;
+    // uid: string;
     fullname: string;
     email: string;
     level: string;

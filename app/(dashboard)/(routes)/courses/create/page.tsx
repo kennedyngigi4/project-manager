@@ -18,7 +18,7 @@ const formSchema = z.object({
 })
 
 const CreateCoursePage = () => {
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
     const router = useRouter();
 
     const form = useForm<z.infer <typeof formSchema>>({
@@ -46,6 +46,7 @@ const CreateCoursePage = () => {
             }
 
         } catch (error) {
+            console.log(error)
             toast.error("Something went wrong", { style: { background: "red", color: "#ffffff" } });
         }
     }
@@ -57,7 +58,7 @@ const CreateCoursePage = () => {
                   Name your course
               </h1>
               <p className="text-sm text-slate-600">
-                  What would you like to name your course? Don't worry, you can change this later.
+                  What would you like to name your course? Do not worry, you can change this later.
               </p>
 
 

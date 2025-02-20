@@ -21,7 +21,7 @@ const ChapterActions = ({
     disabled, courseId, chapterId, isPublished
 }: ChapterActionsProps) => {
     const router = useRouter();
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
     const [isLoading, setIsLoading] = useState(false);
 
     const onClick = async () => {

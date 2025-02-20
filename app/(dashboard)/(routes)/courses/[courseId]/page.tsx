@@ -1,6 +1,5 @@
 "use client"
 import axios from 'axios';
-import { error } from 'console';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -37,9 +36,10 @@ const CourseIdPage = ({
         console.log(response.data)
         setCourse(response.data);
       }).catch((error) => {
+        console.log(error)
         toast.error("Something went wrong");
       })
-    }, [resolvedParams?.courseId]);
+    }, [resolvedParams?.courseId, session?.accessToken]);
 
 
     // Load all instructors
@@ -51,9 +51,10 @@ const CourseIdPage = ({
       }).then((response) => {
         setInstructors(response.data);
       }).catch((error) => {
+        console.log(error)
         toast.error("Something went wrong");
       })
-    }, []);
+    }, [session?.accessToken]);
 
 
     useEffect(() => {

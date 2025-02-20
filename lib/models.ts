@@ -9,5 +9,5 @@ export interface Course{
     skills: string;
     price: number;
     instructor: string;
-    is_published: Boolean;
+    is_published: boolean;
 }

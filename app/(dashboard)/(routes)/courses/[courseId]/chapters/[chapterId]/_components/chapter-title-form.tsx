@@ -5,13 +5,12 @@ import axios from "axios";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import {
-    Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage
+    Form, FormControl, FormField, FormItem, FormMessage
 } from "@/components/ui/form";
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Pencil } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 
@@ -30,9 +29,8 @@ const formSchema = z.object({
 });
 
 const ChapterTitleForm = ({
-    initialData, courseId, chapterId
+    initialData, chapterId
 }: ChapterTitleFormProps) => {
-    const router = useRouter();
     const { data:session } = useSession();
     const [isEditing, setEditing] = useState(false);
 

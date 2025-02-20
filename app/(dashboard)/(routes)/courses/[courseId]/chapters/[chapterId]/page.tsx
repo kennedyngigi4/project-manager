@@ -4,7 +4,6 @@ import axios from 'axios';
 import { ArrowLeft, Eye, LayoutDashboard, VideoIcon } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import ChapterTitleForm from './_components/chapter-title-form';
 import ChapterActions from './_components/chapter-actions';
@@ -18,9 +17,8 @@ import ChapterPositionForm from './_components/chapter-position-form';
 const ChapterId = ({
     params
 } : { params: { courseId: string, chapterId: string} }) => {
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
     const resolvedParams = React.use(params);
-    const router = useRouter();
     const [ chapter, setChapter ] = useState();
 
     useEffect(() => {
@@ -32,7 +30,7 @@ const ChapterId = ({
             setChapter(response.data);
             console.log(response.data);
         })
-    }, []);
+    }, [resolvedParams.chapterId, session?.accessToken]);
 
 
     const requiredFields = [

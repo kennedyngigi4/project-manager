@@ -12,7 +12,7 @@ const DashboardPage = () => {
     if (status != "authenticated") {
       router.push("/auth/signin")
     }
-  }, []);
+  }, [status]);
 
   return (
     <section className="p-6">

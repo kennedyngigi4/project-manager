@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import { Button } from '@/components/ui/button'
-import { FileVideo, Pencil } from 'lucide-react'
+import { FileVideo } from 'lucide-react'
 import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import toast from 'react-hot-toast'
@@ -33,7 +33,7 @@ const ChapterVideoForm = ({
         setVideo(selectedFile);
     }
 
-    const handleVideoUpload = async (e) => {
+    const handleVideoUpload = async () => {
 
         const formData = new FormData();
         formData.append("videoUrl", video);
@@ -82,7 +82,7 @@ const ChapterVideoForm = ({
                                 <source src={initialData?.videoPath} type="video/mp4" />
                             </video>
                         </> 
-                        : <>"No video uploaded"</>
+                        : <>No video uploaded</>
                     }
                 </p>
             )}

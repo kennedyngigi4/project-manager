@@ -10,13 +10,6 @@ import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react"
 import Link from "next/link"
 
-// export type Course = {
-//     course_id: string;
-//     title: string
-//     price: number
-//     is_published: "true" | "false" | "success" | "failed"
-//     action: string
-// }
 
 
 export const columns: ColumnDef<Course>[] = [
@@ -45,7 +38,7 @@ export const columns: ColumnDef<Course>[] = [
             }).format(price);
 
             return (
-                <div>{price}</div>
+                <div>{formatted}</div>
             )
         }
     },

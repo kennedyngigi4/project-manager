@@ -20,7 +20,7 @@ const StudentsPage = () => {
     }).then((response) => {
       setStudents(response.data);
     })
-  }, []);
+  }, [session?.accessToken]);
 
   return (
     <section className="p-6">

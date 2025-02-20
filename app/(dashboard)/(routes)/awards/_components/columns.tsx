@@ -1,23 +1,18 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu } from "@/components/ui/dropdown-menu"
-import { cn } from "@/lib/utils"
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
 import { ColumnDef } from "@tanstack/react-table"
 import axios from "axios"
-import { ArrowUpDown, MoreHorizontal, Pencil, Trash2Icon } from "lucide-react"
+import { ArrowUpDown, Trash2Icon } from "lucide-react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
-import Link from "next/link"
 import toast from "react-hot-toast"
 
 export type User = {
     badge_id: string;
     name: string;
     image: string;
-    imagePath: any;
+    imagePath: string;
 }
 
 
@@ -66,7 +61,7 @@ export const columns: ColumnDef<User>[] = [
                     headers: {
                         'Authorization': `Token ${session?.accessToken}`
                     }
-                }).then((response) => {
+                }).then(() => {
                     toast.success("Deleted successfully")
                     location.reload();
                 }).catch(() => {

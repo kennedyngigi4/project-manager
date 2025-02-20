@@ -1,6 +1,6 @@
 "use client"
 
-import { Delete, Grip, Trash2 } from 'lucide-react'
+import { Grip, Trash2 } from 'lucide-react'
 import React from 'react'
 
 interface AttachmentListProps {

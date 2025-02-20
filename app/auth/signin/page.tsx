@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react';
-import axios from "axios";
 import { useSession, signIn } from 'next-auth/react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,7 +22,7 @@ const formSchema = z.object({
 })
 
 const SigninPage = () => {
-  const { status } = useSession();
+  // const { status } = useSession();
   const router = useRouter();
   const [ isAuthenticating, setIsAuthenticating ] = useState("Sign in");
 

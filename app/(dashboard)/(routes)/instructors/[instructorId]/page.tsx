@@ -12,7 +12,7 @@ const InstructorDetailsPage = ({
     params
 } : { params : { instructorId: string} }) => {
     const resolvedParams = React.use(params);
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
     const [courses, setCourses] = useState([]);
     const [ instructorData, setInstructorData ] = useState({});
 
@@ -25,9 +25,10 @@ const InstructorDetailsPage = ({
             setInstructorData(response.data);
             setCourses(response?.data?.courses);
         }).catch((error) => {
+            console.log(error)
             toast.error("Something went wrong", { style: { background: "red", color: "#ffffff" } })
         })
-    }, []);
+    }, [session?.accessToken]);
 
     return (
         <section className="p-6">

@@ -1,8 +1,5 @@
 "use client"
 import axios from 'axios'
-import { Button } from '@/components/ui/button'
-import { PlusCircle } from 'lucide-react'
-import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { columns } from './_components/columns'
 import { DataTable } from './_components/data-table'
@@ -10,7 +7,7 @@ import { useSession } from 'next-auth/react'
 import toast from 'react-hot-toast'
 
 const CoursesPage = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [ courses, setCourses ] = useState([]);
 
   useEffect(() => {
@@ -22,9 +19,10 @@ const CoursesPage = () => {
       setCourses(response.data);
       console.log(response.data)
     }).catch((error) => {
+      console.log(error)
       toast.error("Something went wrong", { style: { background: "red", color: "#ffffff" } })
     })
-  }, []);
+  }, [session?.accessToken]);
 
   return (
     <section className="p-6 flex flex-col h-full">

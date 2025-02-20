@@ -5,10 +5,10 @@ import axios from "axios";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import {
-    Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage
+    Form, FormControl, FormField, FormItem, FormMessage
 } from "@/components/ui/form";
 import { Button } from '@/components/ui/button';
-import { Pencil, PlusCircle } from 'lucide-react';
+import { PlusCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -35,9 +35,8 @@ const ChaptersForm = ({
     initialData, courseId, instructor
 }: ChaptersFormProps) => {
     const router = useRouter();
-    const { data:session, status } = useSession();
+    const { data:session } = useSession();
     const [isCreating, setIsCreating] = useState(false);
-    const [isUpdating, setIsUpdating] = useState(false);
 
     const toggleCreating = () => {
         setIsCreating((current) => !current);
@@ -55,8 +54,7 @@ const ChaptersForm = ({
     const { isSubmitting, isValid } = form.formState;
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(instructor);
-        let chapterData = {
+        const chapterData = {
             title: values.title,
             course: courseId,
             instructor: instructor,
