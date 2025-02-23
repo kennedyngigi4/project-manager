@@ -41,12 +41,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         async jwt({ token, user }) {
             if (user) {
                 token.accessToken = user.access;
+                token.role = user.role;
             }
             return token;
         },
         async session({ session, token }) {
             session.accessToken = token.accessToken;
+            session.user.role = token.role;
             return session;
         },
-    }
+    },
+    trustHost: true,
+    AUTH_TRUST_HOST: true,
 })

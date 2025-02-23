@@ -9,6 +9,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { Eye, EyeOff } from 'lucide-react';
+import Link from 'next/link';
 
 
 
@@ -23,6 +25,7 @@ const formSchema = z.object({
 
 const SigninPage = () => {
   // const { status } = useSession();
+  const [passwordView, setPasswordView] = useState(false);
   const router = useRouter();
   const [ isAuthenticating, setIsAuthenticating ] = useState("Sign in");
 
@@ -94,11 +97,28 @@ const SigninPage = () => {
                   return <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input 
-                        type="password"
-                        placeholder="********"
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          type={passwordView ? "text" : "password"}
+                          placeholder="*********"
+                          {...field}
+                        />
+                        {passwordView ? (
+                          <Eye
+                            className="absolute right-3 top-2 z-50 cursor-pointer text-gray-400"
+                            onClick={() => {
+                              setPasswordView(!passwordView)
+                            }}
+                          />
+                        ) : (
+                          <EyeOff
+                            className="absolute right-3 top-2 z-50 cursor-pointer text-gray-400"
+                            onClick={() => {
+                              setPasswordView(!passwordView)
+                            }}
+                          />
+                        )}
+                      </div>
                     </FormControl>
                     <FormMessage className="text-red-500" />
                   </FormItem>
@@ -106,10 +126,12 @@ const SigninPage = () => {
               />
 
               <div className="pt-3">
-                <Button type="submit" className="bg-isky_blue w-full rounded-3xl py-5" disabled={!isValid || isSubmitting}>{isAuthenticating}</Button>
+                <Button type="submit" className="bg-isky_orange w-full rounded-3xl py-5" disabled={!isValid || isSubmitting}>{isAuthenticating}</Button>
               </div>
           </form>
         </Form>
+
+        <Link href="/auth/signup">You do not have account? Sign up</Link>
       </div>
     </section>
   )
