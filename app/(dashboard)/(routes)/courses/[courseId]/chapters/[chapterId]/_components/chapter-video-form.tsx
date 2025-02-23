@@ -48,11 +48,19 @@ const ChapterVideoForm = ({
                     const percentage = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                     setProgress(percentage);
                 }
-            });
-            toast.success("Chapter updated");
-            toggleEdit();
-            location.reload();
-        } catch {
+            }).then((response) => {
+                console.log(response.data)
+                toast.success("Chapter updated");
+                toggleEdit();
+                // location.reload();
+            }).catch((error) => {
+                console.log("Error 1");
+                console.log(error);
+            })
+            
+        } catch(error) {
+            console.log("Error 2");
+            console.log(error)
             toast.error("Something went wrong");
         }
     }
