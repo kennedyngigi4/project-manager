@@ -81,7 +81,7 @@ const ChapterVideoForm = ({
 
                 </Button>
             </div>
-            {initialData?.videoPath}
+            
             {!isEditing && (
                 <p className={cn("text-sm mt-2", !initialData?.videoUrl && "text-slate-500 italic")}>
                     {initialData?.videoPath 
