@@ -77,11 +77,47 @@ const CourseIdPage = ({
 
 
     const categories = [
-      { id: "1", name: "Computer Science" },
-      { id: "2", name: "IT" },
-      { id: "3", name: "Data Analysis" },
-      { id: "4", name: "Animations" },
-      { id: "5", name: "Graphic Design" },
+      {
+        id: "1",
+        name: 'Game Design',
+      },
+      {
+        id: "2",
+        name: 'Robotics',
+      },
+      {
+        id: "3",
+        name: 'Web Development',
+      },
+      {
+        id: "4",
+        name: 'Digital Art',
+      },
+      {
+        id: "5",
+        name: 'Cyber Security',
+      },
+      {
+        id: "6",
+        name: 'App Development',
+      },
+      {
+        id: "7",
+        name: '3D Printing',
+      },
+      {
+        id: "8",
+        name: 'Computer Science',
+      },
+      {
+        id: "9",
+        name: 'Graphic Design'
+      },
+      { 
+        id: "10", 
+        name: "Animations" 
+      },
+      
     ]
 
 
